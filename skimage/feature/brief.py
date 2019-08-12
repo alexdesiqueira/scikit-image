@@ -5,7 +5,7 @@ from .util import (DescriptorExtractor, _mask_border_keypoints,
                    _prepare_grayscale_input_2D)
 
 from .brief_cy import _brief_loop
-from .._shared.utils import check_nD
+from .._shared.utils import assert_nD
 
 
 class BRIEF(DescriptorExtractor):
@@ -138,7 +138,7 @@ class BRIEF(DescriptorExtractor):
             Keypoint coordinates as ``(row, col)``.
 
         """
-        check_nD(image, 2)
+        assert_nD(image, 2)
 
         random = np.random.RandomState()
         random.seed(self.sample_seed)

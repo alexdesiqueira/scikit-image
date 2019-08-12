@@ -3,7 +3,7 @@ from scipy import sqrt, pi, arctan2, cos, sin, exp
 from scipy.ndimage import gaussian_filter
 from .. import img_as_float, draw
 from ..color import gray2rgb
-from .._shared.utils import check_nD
+from .._shared.utils import assert_nD
 
 
 def daisy(image, step=4, radius=15, rings=3, histograms=8, orientations=8,
@@ -94,7 +94,7 @@ def daisy(image, step=4, radius=15, rings=3, histograms=8, orientations=8,
     .. [2] http://cvlab.epfl.ch/software/daisy
     '''
 
-    check_nD(image, 2, 'img')
+    assert_nD(image, 2, 'img')
 
     image = img_as_float(image)
 

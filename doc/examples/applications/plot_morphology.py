@@ -25,12 +25,14 @@ To get started, let's load an image using ``io.imread``. Note that morphology
 functions only work on gray-scale or binary images, so we set ``as_gray=True``.
 """
 
+import os
 import matplotlib.pyplot as plt
-from skimage import data
+from skimage.data import data_dir
 from skimage.util import img_as_ubyte
 from skimage import io
 
-orig_phantom = img_as_ubyte(data.shepp_logan_phantom())
+orig_phantom = img_as_ubyte(io.imread(os.path.join(data_dir, "phantom.png"),
+                                      as_gray=True))
 fig, ax = plt.subplots()
 ax.imshow(orig_phantom, cmap=plt.cm.gray)
 
@@ -189,7 +191,7 @@ plot_comparison(phantom, b_tophat, 'black tophat')
 #*single-pixel wide skeleton*. It is important to note that this is
 #performed on binary images only.
 
-horse = data.horse()
+horse = io.imread(os.path.join(data_dir, "horse.png"), as_gray=True)
 
 sk = skeletonize(horse == 0)
 plot_comparison(horse, sk, 'skeletonize')

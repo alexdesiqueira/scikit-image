@@ -5,7 +5,7 @@
 
 import numpy as np
 from scipy.fftpack import ifftshift
-from .._shared.utils import check_nD
+from .._shared.utils import assert_nD
 
 eps = np.finfo(float).eps
 
@@ -120,7 +120,7 @@ class LPIFilter2D(object):
         data : (M,N) ndarray
 
         """
-        check_nD(data, 2, 'data')
+        assert_nD(data, 2, 'data')
         F, G = self._prepare(data)
         out = np.dual.ifftn(F * G)
         out = np.abs(_centre(out, data.shape))
@@ -158,7 +158,7 @@ def forward(data, impulse_response=None, filter_params={},
     >>> filtered = forward(data.coins(), filt_func)
 
     """
-    check_nD(data, 2, 'data')
+    assert_nD(data, 2, 'data')
     if predefined_filter is None:
         predefined_filter = LPIFilter2D(impulse_response, **filter_params)
     return predefined_filter(data)
@@ -188,7 +188,7 @@ def inverse(data, impulse_response=None, filter_params={}, max_gain=2,
         images, construct the LPIFilter2D and specify it here.
 
     """
-    check_nD(data, 2, 'data')
+    assert_nD(data, 2, 'data')
     if predefined_filter is None:
         filt = LPIFilter2D(impulse_response, **filter_params)
     else:
@@ -227,10 +227,10 @@ def wiener(data, impulse_response=None, filter_params={}, K=0.25,
         images, construct the LPIFilter2D and specify it here.
 
     """
-    check_nD(data, 2, 'data')
+    assert_nD(data, 2, 'data')
 
     if not isinstance(K, float):
-        check_nD(K, 2, 'K')
+        assert_nD(K, 2, 'K')
 
     if predefined_filter is None:
         filt = LPIFilter2D(impulse_response, **filter_params)

@@ -296,8 +296,7 @@ class ColorMixer(object):
             can be positive or negative.
 
         '''
-        if channel not in self.valid_channels:
-            raise ValueError('assert_channel is not a valid channel.')
+        assert channel in self.valid_channels
         pool = ThreadDispatch(self.img, self.stateimg,
                               _colormixer.add, channel, ammount)
         pool.run()
@@ -315,8 +314,7 @@ class ColorMixer(object):
             can be positive or negative.
 
         '''
-        if channel not in self.valid_channels:
-            raise ValueError('assert_channel is not a valid channel.')
+        assert channel in self.valid_channels
         pool = ThreadDispatch(self.img, self.stateimg,
                               _colormixer.multiply, channel, ammount)
         pool.run()

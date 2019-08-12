@@ -70,8 +70,6 @@ Requirements
 
 Revisions
 ---------
-2019.07.20
-    Importing Iterable from collections.abc is used to avoid a python warning.
 2018.10.08
     No longer use numpy.fromstring just use numpy.frombuffer.
     Note that this has been fixed upstream in 2018.02.18.
@@ -281,7 +279,7 @@ import struct
 import warnings
 import tempfile
 import datetime
-from collections.abc import Iterable
+import collections
 from fractions import Fraction
 from xml.etree import cElementTree as etree
 
@@ -1490,7 +1488,7 @@ class TiffFile(object):
             pages = [pages[key]]
         elif isinstance(key, slice):
             pages = pages[key]
-        elif isinstance(key, Iterable):
+        elif isinstance(key, collections.Iterable):
             pages = [pages[k] for k in key]
         else:
             raise TypeError("key must be an int, slice, or sequence")

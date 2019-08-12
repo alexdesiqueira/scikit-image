@@ -5,3 +5,4 @@ pytest-cov
 pytest-localserver
 flake8
 codecov
+pytest-faulthandler

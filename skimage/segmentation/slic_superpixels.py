@@ -1,4 +1,4 @@
-from collections.abc import Iterable
+import collections as coll
 import numpy as np
 from scipy import ndimage as ndi
 
@@ -127,7 +127,7 @@ def slic(image, n_segments=100, compactness=10., max_iter=10, sigma=0,
     elif isinstance(spacing, (list, tuple)):
         spacing = np.array(spacing, dtype=np.double)
 
-    if not isinstance(sigma, Iterable):
+    if not isinstance(sigma, coll.Iterable):
         sigma = np.array([sigma, sigma, sigma], dtype=np.double)
         sigma /= spacing.astype(np.double)
     elif isinstance(sigma, (list, tuple)):
